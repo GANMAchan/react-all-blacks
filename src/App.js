@@ -1,27 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import PanelList from './components/PanelList/PanelList.js';
 import './App.css';
 
 class App extends Component {
+
+  //ゲームをリスタートする関数
+  startGame = () =>{
+    this.setState({isPlaying:true});
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <header className="header">
+        {/* isPlayingの状態によって表示する文言を変える*/}
+        {this.state.isPlaying ?
+          <h1>ALL BLACKS</h1> : <h1>Game Clear!!</h1>
+        }
+        <button onClick={() =>this.startGame()}>開始</button>
         </header>
-      </div>
+        {/* endGameをpropsとして渡す*/}
+        <PanelList
+          endGame={this.endGame}
+          isPlaying={this.state.isPlaying}/>
+        </div>
     );
+  }
+
+  //ゲーム状況を関する関数
+  constructor(props) {
+    super(props);
+    this.state = { isPlaying: true }
+  }
+
+  //endGameとなった場合ゲームクリア
+  endGame = () => {
+    this.setState({ isPlaying: false });
   }
 }
 

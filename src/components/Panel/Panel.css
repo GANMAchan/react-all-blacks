@@ -1,0 +1,16 @@
+.panel {
+  width: 100px;
+  height: 100px;
+  margin: 1px;
+  cursor: pointer;
+}
+
+.bg-black{
+  background-color: black;
+  transition-duration:0.5s;
+}
+
+.bg-white{
+  background-color: whitesmoke;
+  transition-duration:0.5s;
+}
